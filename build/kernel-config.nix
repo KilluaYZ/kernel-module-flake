@@ -92,7 +92,7 @@ in
         export HOSTAR=$AR_FOR_BUILD
         export HOSTLD=$LD_FOR_BUILD
         # Get a basic config file for later refinement with $generateConfig.
-        make $makeFlags \
+        make -j20 $makeFlags \
           -C . O="$buildRoot" allnoconfig \
           HOSTCC=$HOSTCC HOSTCXX=$HOSTCXX HOSTAR=$HOSTAR HOSTLD=$HOSTLD \
           CC=$CC OBJCOPY=$OBJCOPY OBJDUMP=$OBJDUMP READELF=$READELF \

@@ -15,10 +15,10 @@
     pkgs = nixpkgs.legacyPackages.${system};
 
     # Flake options
-    enableBPF = true;
-    enableRust = true;
-    enableEditor = true;
-    enableGdb = true;
+    enableBPF = false;
+    enableRust = false;
+    enableEditor = false;
+    enableGdb = false;
     useRustForLinux = false;
 
     buildLib = pkgs.callPackage ./build {};
@@ -135,6 +135,8 @@
           cppcheck
           sparse
           rustc
+          # nushell
+          zsh
         ]
         ++ lib.optional enableGdb runGdb
         ++ lib.optional enableEditor neovimPkg
@@ -146,6 +148,10 @@
         KERNEL = kernel.dev;
         KERNEL_VERSION = kernel.modDirVersion;
         RUST_LIB_SRC = pkgs.rustPlatform.rustLibSrc;
+
+        shellHook = ''
+          zsh
+        '';
       };
   in {
     lib = {
